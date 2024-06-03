@@ -1,5 +1,5 @@
 import React from 'react';
-import MainMenuItem from '@/Shared/MainMenuItem';
+
 import MainMenuItemGuest from './MainMenuItemGuest';
 import Logo from './Logo';
 
@@ -19,7 +19,10 @@ export default () => {
               <MainMenuItemGuest text="Việc làm zalo" link="vieclamzalo" />
             </li>
             <li>
-              <MainMenuItemGuest text="Dashboard" link="dashboard" />
+              <MainMenuItemGuest text="Liên hệ" link="lienhe" />
+            </li>
+            <li>
+              <MainMenuItemGuest text="Đăng nhập" link="login" />
             </li>
           </ul>
         </div>

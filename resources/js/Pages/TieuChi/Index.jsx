@@ -6,23 +6,22 @@ import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
 
 const Index = () => {
-  const { dinhgia } = usePage().props;
-  console.log(dinhgia);
+  const { tieuchi } = usePage().props;
   const {
     data,
     meta: { links }
-  } = dinhgia;
+  } = tieuchi;
   return (
     <div>
-      <h1 className="mb-8 text-3xl font-bold">Định giá</h1>
+      <h1 className="mb-8 text-3xl font-bold">Tiêu chí</h1>
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
         <Link
           className="btn-indigo focus:outline-none"
-          href={route('dinhgia.create')}
+          href={route('tieuchi.create')}
         >
           <span>Tạo</span>
-          <span className="hidden md:inline"> Định giá</span>
+          <span className="hidden md:inline"> Tiêu chí</span>
         </Link>
       </div>
       <div className="overflow-x-auto bg-white rounded shadow">
@@ -31,11 +30,11 @@ const Index = () => {
             <tr className="font-bold text-left">
             <th className="px-6 pt-5 pb-4">ID</th>
               <th className="px-6 pt-5 pb-4">Name</th>
-              <th className="px-6 pt-5 pb-4">Price</th>
+              <th className="px-6 pt-5 pb-4">Slug</th>
             </tr>
           </thead>
           <tbody>
-            {data.map(({ id, name,price, deleted_at }) => {
+            {data.map(({ id, name,slug, deleted_at }) => {
               return (
                 <tr
                   key={id}
@@ -43,7 +42,7 @@ const Index = () => {
                 >
                   <td className="border-t">
                     <Link
-                      href={route('dinhgia.edit', id)}
+                      href={route('tieuchi.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                     >
                       {id}
@@ -57,7 +56,7 @@ const Index = () => {
                   </td>
                   <td className="border-t">
                     <Link
-                      href={route('dinhgia.edit', id)}
+                      href={route('tieuchi.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                     >
                       {name}
@@ -72,17 +71,17 @@ const Index = () => {
                   <td className="border-t">
                     <Link
                       tabIndex="-1"
-                      href={route('dinhgia.edit', id)}
+                      href={route('tieuchi.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                     >
-                      {price}
+                      {slug}
                     </Link>
                   </td>
                   
                   <td className="w-px border-t">
                     <Link
                       tabIndex="-1"
-                      href={route('dinhgia.edit', id)}
+                      href={route('tieuchi.edit', id)}
                       className="flex items-center px-4 focus:outline-none"
                     >
                       <Icon
@@ -97,7 +96,7 @@ const Index = () => {
             {data.length === 0 && (
               <tr>
                 <td className="px-6 py-4 border-t" colSpan="4">
-                  No dinhgia found.
+                  No tieuchi found.
                 </td>
               </tr>
             )}

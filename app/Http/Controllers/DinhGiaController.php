@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Resources\DinhGiaCollection;
+use App\Models\DinhGia;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class DinhGiaController extends Controller
@@ -10,9 +12,22 @@ class DinhGiaController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function dinhgia()
+    {
+        return Inertia::render('Guest/DinhGia/Index');
+    }
+
     public function index()
     {
-        return Inertia::render('DinhGia/Index');
+        return Inertia::render('DinhGia/Index', [
+            'filters' => Request::all('search', 'trashed'),
+            'dinhgia' => new DinhGiaCollection(
+                DinhGia::orderBy('id')
+                    ->filter(Request::only('search', 'trashed'))
+                    ->paginate()
+                    ->appends(Request::all())
+            ),
+        ]);
     }
 
     /**

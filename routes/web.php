@@ -8,6 +8,7 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\TieuChiController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth
-Route::get('/', [DinhGiaController::class, 'index'])
-    ->name('dinhgia')
-    ->middleware('guest');
+Route::get('/', [DinhGiaController::class, 'dinhgia'])
+    ->name('dinhgia');
+
 Route::get('/vieclamzalo', [PageController::class, 'vieclamzalo'])
-    ->name('vieclamzalo')
-    ->middleware('guest');
+    ->name('vieclamzalo');
+
+Route::get('/lienhe', [PageController::class, 'lienhe'])
+    ->name('lienhe');
+
 Route::get('login', [LoginController::class, 'create'])
     ->name('login')
     ->middleware('guest');
@@ -71,6 +75,12 @@ Route::put('users/{user}', [UsersController::class, 'update'])
 Route::delete('users/{user}', [UsersController::class, 'destroy'])
     ->name('users.destroy')
     ->middleware('auth');
+
+Route::resource('tieuchi', TieuChiController::class);
+Route::put('tieuchi/{tieuchi}/restore', [TieuChiController::class, 'restore'])
+    ->name('tieuchi.restore')
+    ->middleware('auth');
+Route::resource('dinhgia', DinhGiaController::class);
 
 Route::put('users/{user}/restore', [UsersController::class, 'restore'])
     ->name('users.restore')

@@ -12,7 +12,12 @@ class PageController extends Controller
      */
     public function vieclamzalo()
     {
-        return Inertia::render('Page/ViecLam');
+        return Inertia::render('Guest/Page/ViecLam');
+    }
+
+    public function lienhe()
+    {
+        return Inertia::render('Guest/Page/LienHe');
     }
 
     /**
