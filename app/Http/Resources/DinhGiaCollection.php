@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DinhGiaCollection extends ResourceCollection
@@ -12,7 +11,7 @@ class DinhGiaCollection extends ResourceCollection
      *
      * @return array<int|string, mixed>
      */
-    public function toArray(Request $request)
+    public function toArray($request)
     {
         return $this->collection->map->only(
             'id', 'name', 'price','deleted_at'

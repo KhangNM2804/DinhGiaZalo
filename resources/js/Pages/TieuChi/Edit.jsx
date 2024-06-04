@@ -11,6 +11,7 @@ import Icon from '@/Shared/Icon';
 
 const Edit = () => {
   const { tieuChi } = usePage().props;
+  console.log(tieuChi);
   const { data, setData, errors, put, processing } = useForm({
     name: tieuChi.name || '',
     slug: tieuChi.slug || '',

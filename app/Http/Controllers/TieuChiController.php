@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TieuChiStoreRequest;
 use App\Http\Requests\TieuChiUpdateRequest;
 use App\Http\Resources\TieuChiCollection;
+use App\Http\Resources\TieuChiResource;
 use App\Models\TieuChi;
 
 use Illuminate\Http\RedirectResponse;
@@ -66,7 +67,7 @@ class TieuChiController extends Controller
     public function edit(TieuChi $tieuchi): Response
     {
         return Inertia::render('TieuChi/Edit', [
-            'tieuChi' => $tieuchi
+            'tieuChi' => new TieuChiResource($tieuchi)
         ]);
     }
 

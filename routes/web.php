@@ -10,6 +10,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\TieuChiController;
 use App\Http\Controllers\UsersController;
+use App\Models\DinhGia;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +82,9 @@ Route::put('tieuchi/{tieuchi}/restore', [TieuChiController::class, 'restore'])
     ->name('tieuchi.restore')
     ->middleware('auth');
 Route::resource('dinhgia', DinhGiaController::class);
+Route::put('dinhgia/{dinhgia}/restore', [DinhGiaController::class, 'restore'])
+    ->name('dinhgia.restore')
+    ->middleware('auth');
 
 Route::put('users/{user}/restore', [UsersController::class, 'restore'])
     ->name('users.restore')

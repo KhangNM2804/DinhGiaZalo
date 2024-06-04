@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DinhGia extends Model
@@ -12,16 +13,23 @@ class DinhGia extends Model
     use SoftDeletes;
 
     protected $table = 'dinhgia';
-    
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Sử dụng sự kiện creating để tạo slug trước khi mô hình được tạo
+        static::deleting(function ($item) {
+            $item->cumdinhgia()->delete();
+        });
+
+        
+    }
     public function resolveRouteBinding($value, $field = null)
     {
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
-    // public function contacts(): HasMany
-    // {
-    //     return $this->hasMany(Contact::class);
-    // }
+  
     
     public function scopeFilter($query, array $filters)
     {
@@ -34,5 +42,9 @@ class DinhGia extends Model
                 $query->onlyTrashed();
             }
         });
+    }
+
+    public function cumdinhgia():HasMany{
+        return $this->hasMany(CumDinhGia::class,'dinhgia_id');
     }
 }

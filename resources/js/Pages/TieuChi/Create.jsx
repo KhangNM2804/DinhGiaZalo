@@ -32,7 +32,7 @@ const Create = () => {
           <div className="flex flex-wrap p-8 -mb-8 -mr-6">
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Name"
+              label="Tên tiêu chí"
               name="name"
               errors={errors.name}
               value={data.name}

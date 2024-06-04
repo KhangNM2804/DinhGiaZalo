@@ -17,7 +17,7 @@ class TieuChiResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->email,
+            'slug' => $this->slug,
             'deleted_at' => $this->deleted_at,
         ];
     }
