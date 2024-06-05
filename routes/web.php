@@ -85,6 +85,9 @@ Route::resource('dinhgia', DinhGiaController::class);
 Route::put('dinhgia/{dinhgia}/restore', [DinhGiaController::class, 'restore'])
     ->name('dinhgia.restore')
     ->middleware('auth');
+Route::post('dinhgia/dinhgia', [DinhGiaController::class, 'dinhgiacheck'])
+    ->name('dinhgia.dinhgia');
+    
 
 Route::put('users/{user}/restore', [UsersController::class, 'restore'])
     ->name('users.restore')

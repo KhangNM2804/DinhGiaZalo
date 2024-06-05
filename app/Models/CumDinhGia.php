@@ -14,4 +14,8 @@ class CumDinhGia extends Model
     {
         return $this->belongsTo(DinhGia::class);
     }
+    public function tieuchi(): BelongsTo
+    {
+        return $this->belongsTo(TieuChi::class);
+    }
 }

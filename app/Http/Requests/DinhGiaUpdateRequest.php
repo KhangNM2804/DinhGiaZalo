@@ -21,10 +21,16 @@ class DinhGiaUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'=>['required','max:100','unique:dinhgia,name,'.$this->dinhgium->id],
-            'price'=>['required','numeric','min:0'],
-            'cumdinhgia'=>['required','array']
+        $rules = [
+            'name' => ['required', 'max:100', 'unique:dinhgia,name,' . $this->dinhgium->id],
+            'price' => ['required', 'numeric', 'min:0'],
         ];
+
+        // Conditionally add the cumdinhgia rule
+        if ($this->dinhgium->id != 49) {
+            $rules['cumdinhgia'] = ['required', 'array'];
+        }
+
+        return $rules;
     }
 }

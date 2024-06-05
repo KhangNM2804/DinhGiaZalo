@@ -93,6 +93,7 @@ const Edit = () => {
                     <li key={id} className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                       <Checkbox
                         className="flex items-center ps-3"
+                        labelClass="mt-px font-light text-gray-700 cursor-pointer"
                         label={id + '.' + name}
                         id={id}
                         name="cumdinhgia"

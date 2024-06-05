@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use NumberFormatter;
 
 class DinhGia extends Model
 {
@@ -29,7 +30,14 @@ class DinhGia extends Model
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
-  
+    public function getPriceAttribute($value)
+    {
+        // Sử dụng NumberFormatter để định dạng giá trị
+        $formatter = new NumberFormatter('vi-VN', NumberFormatter::CURRENCY);
+        $formattedPrice = $formatter->format($value);
+
+        return $formattedPrice;
+    }
     
     public function scopeFilter($query, array $filters)
     {

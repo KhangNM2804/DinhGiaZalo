@@ -5,6 +5,7 @@ export default ({
   label,
   name,
   className,
+  labelClass,
   children,
   errors = [],
   ...props
@@ -30,7 +31,7 @@ export default ({
       </span>
     </label>
       {label && (
-        <label className="mt-px font-light text-gray-700 cursor-pointer " htmlFor={id}>
+        <label className={labelClass} htmlFor={id}>
           {label}
         </label>
       )}
