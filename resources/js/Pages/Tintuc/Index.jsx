@@ -28,14 +28,14 @@ const Index = () => {
         <table className="w-full whitespace-nowrap">
           <thead>
             <tr className="font-bold text-left">
-            <th className="px-6 pt-5 pb-4">ID</th>
+              <th className="px-6 pt-5 pb-4">ID</th>
               <th className="px-6 pt-5 pb-4">Tiêu đề</th>
               <th className="px-6 pt-5 pb-4">Nội dung tóm tắt</th>
               <th className="px-6 pt-5 pb-4">Ảnh đại diện</th>
             </tr>
           </thead>
           <tbody>
-            {data.map(({ id, name,slug, deleted_at }) => {
+            {data.map(({ id,title,summary_content,photo,deleted_at }) => {
               return (
                 <tr
                   key={id}
@@ -60,7 +60,7 @@ const Index = () => {
                       href={route('tintuc.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                     >
-                      {name}
+                      {title}
                       {deleted_at && (
                         <Icon
                           name="trash"
@@ -75,16 +75,21 @@ const Index = () => {
                       href={route('tintuc.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                     >
-                      {slug}
+                      {summary_content}
                     </Link>
                   </td>
-                  
                   <td className="w-px border-t">
                     <Link
                       tabIndex="-1"
                       href={route('tintuc.edit', id)}
                       className="flex items-center px-4 focus:outline-none"
                     >
+                      {photo && (
+                        <img
+                          src={photo}
+                          className="block w-30 h-30 mr-2 my-2 "
+                        />
+                      )}
                       <Icon
                         name="cheveron-right"
                         className="block w-6 h-6 text-gray-400 fill-current"
@@ -97,7 +102,7 @@ const Index = () => {
             {data.length === 0 && (
               <tr>
                 <td className="px-6 py-4 border-t" colSpan="4">
-                  No tintuc found.
+                 Không có bất kỳ tin tức nào.
                 </td>
               </tr>
             )}

@@ -3,22 +3,25 @@ import { Link, useForm } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
 import FileInput from '@/Shared/FileInput';
 import TextArea from '@/Shared/TextArea';
-import EditorBase from '@/Shared/EditorBase';
+import { Editor } from '@tinymce/tinymce-react';
 
 const Create = () => {
   const { data, setData, errors, post, processing } = useForm({
     title: '',
-    photo:'',
-    summary_content:'',
-    content:'',
+    photo: '',
+    summary_content: '',
+    content: '',
   });
 
   function handleSubmit(e) {
     e.preventDefault();
     post(route('tintuc.store'));
+  }
+
+  function handleEditorChange(content) {
+    setData('content', content);
   }
 
   return (
@@ -60,7 +63,25 @@ const Create = () => {
               value={data.summary_content}
               onChange={e => setData('summary_content', e.target.value)}
             />
-            <EditorBase></EditorBase>
+            <div className="w-full pb-8 pr-6">
+              <Editor
+                apiKey='w6cn2yf73ydhvp3indns4fkipggyu39mzkil416cb4i55eq5'
+                initialValue="Thiết kế trang tin tức"
+                init={{
+                  plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+                  toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                  tinycomments_mode: 'embedded',
+                  tinycomments_author: 'Author name',
+                  mergetags_list: [
+                    { value: 'First.Name', title: 'First Name' },
+                    { value: 'Email', title: 'Email' },
+                  ],
+                  ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+                }}
+                onEditorChange={handleEditorChange}
+              />
+              {errors.content && <div className="text-red-600 mt-2">{errors.content}</div>}
+            </div>
           </div>
           <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
             <LoadingButton

@@ -29,7 +29,7 @@ const Index = () => {
           <thead>
             <tr className="font-bold text-left">
             <th className="px-6 pt-5 pb-4">ID</th>
-              <th className="px-6 pt-5 pb-4">Name</th>
+              <th className="px-6 pt-5 pb-4">Tiêu chí</th>
               <th className="px-6 pt-5 pb-4">Slug</th>
             </tr>
           </thead>
@@ -96,7 +96,7 @@ const Index = () => {
             {data.length === 0 && (
               <tr>
                 <td className="px-6 py-4 border-t" colSpan="4">
-                  No tieuchi found.
+                  Không có bất kỳ tiêu chí nào
                 </td>
               </tr>
             )}

@@ -60,7 +60,7 @@ const Edit = () => {
       </h1>
       {dinhGia.deleted_at && (
         <TrashedMessage onRestore={restore}>
-          This tieuchi has been deleted.
+          Định giá này đã bị xoá
         </TrashedMessage>
       )}
       <div className="max-w-7xl overflow-hidden bg-white rounded shadow">
@@ -117,7 +117,7 @@ const Edit = () => {
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
             {dinhGia && (
               <DeleteButton onDelete={destroy}>
-                Delete Định giá
+                Xoá Định giá
               </DeleteButton>
             )}
             <LoadingButton
@@ -125,7 +125,7 @@ const Edit = () => {
               type="submit"
               className="ml-auto btn-indigo"
             >
-              Update Định giá
+              Cập nhật Định giá
             </LoadingButton>
           </div>
         </form>

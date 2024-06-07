@@ -11,7 +11,6 @@ import Icon from '@/Shared/Icon';
 
 const Edit = () => {
   const { tieuChi } = usePage().props;
-  console.log(tieuChi);
   const { data, setData, errors, put, processing } = useForm({
     name: tieuChi.name || '',
     slug: tieuChi.slug || '',
@@ -49,7 +48,7 @@ const Edit = () => {
       </h1>
       {tieuChi.deleted_at && (
         <TrashedMessage onRestore={restore}>
-          This tieuchi has been deleted.
+          Tiêu chí này đã bị xoá
         </TrashedMessage>
       )}
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
@@ -78,7 +77,7 @@ const Edit = () => {
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
             {tieuChi && (
               <DeleteButton onDelete={destroy}>
-                Delete tiêu chí
+                Xoá tiêu chí
               </DeleteButton>
             )}
             <LoadingButton
@@ -86,7 +85,7 @@ const Edit = () => {
               type="submit"
               className="ml-auto btn-indigo"
             >
-              Update tiêu chí
+              Cập nhật tiêu chí
             </LoadingButton>
           </div>
         </form>

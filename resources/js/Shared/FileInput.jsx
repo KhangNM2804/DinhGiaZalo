@@ -11,10 +11,10 @@ const Button = ({ text, onClick }) => (
   </button>
 );
 
-export default ({ className, name, label, accept, errors = [], onChange }) => {
+export default ({ className, name,value, label, accept, errors = [], onChange }) => {
   const fileInput = useRef();
   const [file, setFile] = useState(null);
-  const [fileUrl, setFileUrl] = useState(null);
+  const [fileUrl, setFileUrl] = useState(value);
 
   function browse() {
     fileInput.current.click();
@@ -33,6 +33,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
     setFileUrl(URL.createObjectURL(file));
     onChange(file);
   }
+  
 
   return (
     <div className={className}>
@@ -55,15 +56,15 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
             <Button text="Browse" onClick={browse} />
           </div>
         )}
-        {file && (
+        {value && (
           <div className="flex items-center justify-between p-2">
             <div className="flex-1 pr-1">
               <img src={fileUrl} alt="Selected" className="w-24 h-24 object-cover" />
               <span className="ml-1 text-xs text-gray-600">
-                ({filesize(file.size)})
+                {file&&filesize(file.size)}
               </span>
             </div>
-            <Button text="Remove" onClick={remove} />
+            {file && <Button text="Remove" onClick={remove} />}
           </div>
         )}
       </div>

@@ -11,7 +11,6 @@ use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\TieuChiController;
 use App\Http\Controllers\TintucController;
 use App\Http\Controllers\UsersController;
-use App\Models\DinhGia;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,7 +89,13 @@ Route::put('dinhgia/{dinhgia}/restore', [DinhGiaController::class, 'restore'])
 Route::post('dinhgia/dinhgia', [DinhGiaController::class, 'dinhgiacheck'])
     ->name('dinhgia.dinhgia');
 
-Route::resource('tintuc', TintucController::class)->middleware('auth');;
+Route::resource('tintuc', TintucController::class)->middleware('auth');
+Route::put('tintuc/{tintuc}/restore', [TinTucController::class, 'restore'])
+    ->name('tintuc.restore')
+    ->middleware('auth');
+
+Route::get('guest/tintuc', [TinTucController::class, 'indexGuest'])->name('guest.tintuc.index');
+Route::get('guest/tintuc/{tintuc}', [TinTucController::class, 'show'])->name('guest.tintuc.show');
 
 Route::put('users/{user}/restore', [UsersController::class, 'restore'])
     ->name('users.restore')

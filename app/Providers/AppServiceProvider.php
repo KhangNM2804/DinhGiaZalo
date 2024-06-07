@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/tieuchi';
 
     /**
      * Register any application services.
