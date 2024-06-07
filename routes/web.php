@@ -9,6 +9,7 @@ use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\TieuChiController;
+use App\Http\Controllers\TintucController;
 use App\Http\Controllers\UsersController;
 use App\Models\DinhGia;
 use Illuminate\Support\Facades\Route;
@@ -77,17 +78,19 @@ Route::delete('users/{user}', [UsersController::class, 'destroy'])
     ->name('users.destroy')
     ->middleware('auth');
 
-Route::resource('tieuchi', TieuChiController::class);
+Route::resource('tieuchi', TieuChiController::class)->middleware('auth');
 Route::put('tieuchi/{tieuchi}/restore', [TieuChiController::class, 'restore'])
     ->name('tieuchi.restore')
     ->middleware('auth');
-Route::resource('dinhgia', DinhGiaController::class);
+
+Route::resource('dinhgia', DinhGiaController::class)->middleware('auth');
 Route::put('dinhgia/{dinhgia}/restore', [DinhGiaController::class, 'restore'])
     ->name('dinhgia.restore')
     ->middleware('auth');
 Route::post('dinhgia/dinhgia', [DinhGiaController::class, 'dinhgiacheck'])
     ->name('dinhgia.dinhgia');
-    
+
+Route::resource('tintuc', TintucController::class)->middleware('auth');;
 
 Route::put('users/{user}/restore', [UsersController::class, 'restore'])
     ->name('users.restore')

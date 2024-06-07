@@ -14,6 +14,7 @@ const Button = ({ text, onClick }) => (
 export default ({ className, name, label, accept, errors = [], onChange }) => {
   const fileInput = useRef();
   const [file, setFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState(null);
 
   function browse() {
     fileInput.current.click();
@@ -21,6 +22,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
 
   function remove() {
     setFile(null);
+    setFileUrl(null);
     onChange(null);
     fileInput.current.value = null;
   }
@@ -28,6 +30,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
   function handleFileChange(e) {
     const file = e.target.files[0];
     setFile(file);
+    setFileUrl(URL.createObjectURL(file));
     onChange(file);
   }
 
@@ -55,7 +58,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
         {file && (
           <div className="flex items-center justify-between p-2">
             <div className="flex-1 pr-1">
-              {file.name}
+              <img src={fileUrl} alt="Selected" className="w-24 h-24 object-cover" />
               <span className="ml-1 text-xs text-gray-600">
                 ({filesize(file.size)})
               </span>

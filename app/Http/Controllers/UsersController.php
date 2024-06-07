@@ -54,8 +54,13 @@ class UsersController extends Controller
 
     public function update(User $user, UserUpdateRequest $request): RedirectResponse
     {
+        $data = $request->validated();
+        $file = $request->file('photo');
+        $imageName = time().'.'.$file->extension();  
+        $file->move(public_path('images'), $imageName);
+        $data['photo'] = '/images/'.$imageName;
         $user->update(
-            $request->validated()
+            $data
         );
 
         return Redirect::back()->with('success', 'User updated.');

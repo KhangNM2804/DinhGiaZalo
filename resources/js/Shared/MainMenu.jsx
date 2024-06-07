@@ -7,6 +7,7 @@ export default ({ className }) => {
       <MainMenuItem text="Dashboard" link="dashboard" icon="dashboard" />
       <MainMenuItem text="Tiêu chí" link="tieuchi.index" icon="office" />
       <MainMenuItem text="Định giá" link="dinhgia.index" icon="office" />
+      <MainMenuItem text="Tin tức" link="tintuc.index" icon="office" />
       <MainMenuItem text="Organizations" link="organizations" icon="office" />
       <MainMenuItem text="Contacts" link="contacts" icon="users" />
       <MainMenuItem text="Reports" link="reports" icon="printer" />
